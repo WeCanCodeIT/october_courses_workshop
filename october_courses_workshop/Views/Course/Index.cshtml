@@ -1,0 +1,24 @@
+﻿@model IEnumerable<october_courses_workshop.Models.Courses>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Course</title>
+</head>
+<body>
+    <h1>Courses List</h1>
+    @foreach (var courses in Model)
+    {
+        <p><a href="/Course/Details/@courses.Id">Title: <span>@courses.Name</span></a></p>
+        <p>Description: <span>@courses.Description</span></p>
+        <hr />
+    }
+
+</body>
+</html>
