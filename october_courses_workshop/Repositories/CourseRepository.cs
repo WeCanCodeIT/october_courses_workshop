@@ -1,35 +1,41 @@
-﻿using System;
+﻿using october_courses_workshop.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using october_courses_workshop.Models;
+using october_courses_workshop.Data;
 
 namespace october_courses_workshop.Repositories
 {
-    public class CourseRepository: IRepository<Courses>
+    public class CourseRepository : IRepository<Courses>
     {
-        public List<Courses> coursesList;
+        private UniversityContext db;
 
-        public CourseRepository()
+        public CourseRepository(UniversityContext db)
         {
-            coursesList = new List<Courses>()
-            {
-                new Courses(1, "Machine Learning", "Machine learning for humans"),
-                new Courses(2, "C# for Smarties", "It's all you need to learn it all"),
-                new Courses(3, "HTML, CSS, JS, oh my!", "OMG, the front end will become your BFF")
-            };
+            this.db = db;
+        }
 
+        public void Create(Courses course)
+        {
+            db.Courses.Add(course);
+            db.SaveChanges();
+        }
+
+        public void Delete(Courses course)
+        {
+            db.Courses.Remove(course);
+            db.SaveChanges();
         }
 
         public IEnumerable<Courses> GetAll()
         {
-            return coursesList;
+            return db.Courses;
         }
 
         public Courses GetById(int id)
         {
-            return coursesList.Single(c => c.Id == id);
+            return db.Courses.Single(c => c.Id == id);
         }
-
     }
 }

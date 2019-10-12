@@ -1,11 +1,134 @@
-﻿using System;
+﻿using october_courses_workshop.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace october_courses_workshop.Data
 {
-    public class UniversityContext
+    public class UniversityContext : DbContext
     {
+        public DbSet<Courses> Courses { get; set; }
+        public DbSet<Instructor> Instructors { get; set; }
+        public DbSet<Student> Students { get; set; }
+        public DbSet<StudentCourse> StudentCourses { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            var connectionString = "Server=(localdb)\\mssqllocaldb;Database=UniversityDB_062019;Trusted_Connection=True;";
+
+            optionsBuilder.UseSqlServer(connectionString);
+                //.UseLazyLoadingProxies();
+
+            base.OnConfiguring(optionsBuilder);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Courses>().HasData(
+                new Courses()
+                {
+                    Id = 1,
+                    Name = "Machine Learning",
+                    Description = "Machine learning for humans",
+                    InstructorId = 1
+                },
+
+                new Courses()
+                {
+                    Id = 2,
+                    Name = "C# for Smarties",
+                    Description = "It's all you need to learn it all",
+                    InstructorId = 2
+                },
+
+                new Courses()
+                {
+                    Id = 3,
+                    Name = "HTML, CSS, JS, oh my!",
+                    Description = "OMG, the front end will become your BFF",
+                    InstructorId = 2
+                });
+
+            modelBuilder.Entity<Instructor>().HasData(
+                new Instructor()
+                {
+                    Id = 1,
+                    Name = "Jen"
+                },
+
+                new Instructor()
+                {
+                    Id = 2,
+                    Name = "Ernest"
+                });
+
+            modelBuilder.Entity<Student>().HasData(
+                new Student()
+                {
+                    Id = 1,
+                    Name = "Ferris Bueller"
+                },
+
+                new Student()
+                {
+                    Id = 2,
+                    Name = "Cameron Frye"
+                },
+
+                new Student()
+                {
+                    Id = 3,
+                    Name = "Sloane Peterson"
+                });
+
+            modelBuilder.Entity<StudentCourse>().HasData(
+                new StudentCourse()
+                {
+                    Id = 1,
+                    CourseId = 1,
+                    StudentId = 1
+                },
+
+                new StudentCourse()
+                {
+                    Id = 2,
+                    CourseId = 1,
+                    StudentId = 2
+                },
+
+                new StudentCourse()
+                {
+                    Id = 3,
+                    CourseId = 2,
+                    StudentId = 2
+                },
+
+                new StudentCourse()
+                {
+                    Id = 4,
+                    CourseId = 2,
+                    StudentId = 3
+                },
+
+                new StudentCourse()
+                {
+                    Id = 5,
+                    CourseId = 3,
+                    StudentId = 1
+                },
+
+                new StudentCourse()
+                {
+                    Id = 6,
+                    CourseId = 3,
+                    StudentId = 3
+                });
+
+
+            base.OnModelCreating(modelBuilder);
+        }
+
     }
 }

@@ -10,8 +10,8 @@ namespace october_courses_workshop.Repositories
 
         IEnumerable<T> GetAll();
         T GetById(int id);
-        //void Create(T obj);
-        //void Delete(T obj);
+        void Create(T obj);
+        void Delete(T obj);
         //void Update(T obj);
 
 

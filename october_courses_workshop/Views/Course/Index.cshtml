@@ -9,16 +9,24 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link href="~/css/StyleSheet.css" rel="stylesheet" />
+    <link href="~/css/CourseStyle.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/79055b70f1.js"></script>
     <title>Course</title>
 </head>
 <body>
     <h1>Courses List</h1>
-    @foreach (var courses in Model)
+    @foreach (var course in Model)
     {
-        <p><a href="/Course/Details/@courses.Id">Title: <span>@courses.Name</span></a></p>
-        <p>Description: <span>@courses.Description</span></p>
+        <div class="course-container">
+            <p><a href="/Course/Details/@course.Id">@course.Name </a></p>
+            <a href="/Course/Delete/@course.Id"><i class="fas fa-trash-alt"></i></a>
+        </div>
         <hr />
     }
+
+    <p><a href="/Course/Create">Add a Course</a></p>
+    <p><a href="/Instructor/Index">Go to Instructor List</a></p>
 
 </body>
 </html>

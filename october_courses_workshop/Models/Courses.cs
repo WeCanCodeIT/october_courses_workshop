@@ -11,6 +11,10 @@ namespace october_courses_workshop.Models
         public string Name { get; set; }
         public string Description { get; set; }
 
+        public virtual int InstructorId { get; set; }
+        public virtual Instructor Instructor { get; set; }
+
+
         public Courses()
         {
         }
