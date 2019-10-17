@@ -1,0 +1,24 @@
+﻿@model IEnumerable<october_courses_workshop.Models.Instructor>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Instructors</title>
+</head>
+<body>
+    <h1>Instructors List</h1>
+    @foreach (var instructor in Model)
+    {
+        <p>Name: <a href="/Instructor/Details/@instructor.Id">@instructor.Name </a></p>
+        <hr />
+    }
+
+    <p><a href="/Course/Index">Return to Courses List</a></p>
+
+</body>
+</html>

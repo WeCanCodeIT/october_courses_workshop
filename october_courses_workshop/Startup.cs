@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using october_courses_workshop.Data;
 using october_courses_workshop.Models;
 using october_courses_workshop.Repositories;
 
@@ -33,7 +34,10 @@ namespace october_courses_workshop
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddDbContext<UniversityContext>();
             services.AddScoped<IRepository<Courses>, CourseRepository>();
+            services.AddScoped<IRepository<Instructor>, InstructorRepository>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
