@@ -36,6 +36,8 @@ namespace october_courses_workshop
 
             services.AddDbContext<UniversityContext>();
             services.AddScoped<IRepository<Courses>, CourseRepository>();
+            services.AddScoped<IRepository<Instructor>, InstructorRepository>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
