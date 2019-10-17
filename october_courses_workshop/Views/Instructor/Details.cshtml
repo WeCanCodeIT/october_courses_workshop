@@ -1,0 +1,22 @@
+﻿@model october_courses_workshop.Models.Instructor
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <h1>Instructor Details</h1>
+    <p>Name: <span>@Model.Name</span></p>
+    <hr />
+
+    <p><a href="/Course/CreateByInstructorId/@Model.Id">Add a course for this Instructor</a></p>
+    <p><a href="/Instructor/Index">Return to Instructor List</a></p>
+
+</body>
+</html>
